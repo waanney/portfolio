@@ -1,16 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitch from "./LanguageSwitch";
+import Link from "next/link";
 
-const navItems = ["home", "about", "research", "projects", "contact"] as const;
+const navItems = ["home", "about", "research", "projects", "contact", "blog"] as const;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -18,10 +22,30 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (item: string) => {
     setMobileOpen(false);
+    
+    if (item === "blog") {
+      router.push("/blog");
+      return;
+    }
+
+    if (item === "home") {
+      if (pathname !== "/") {
+        router.push("/");
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return;
+    }
+
+    if (pathname !== "/") {
+      // Navigate to home and then scroll
+      router.push(`/#${item}`);
+    } else {
+      const el = document.getElementById(item);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -53,15 +77,14 @@ const Navbar = () => {
         }}
       >
         {/* Logo */}
-        <button
-          onClick={() => scrollTo("home")}
+        <Link
+          href="/"
           className="gradient-text"
           style={{
             fontFamily: "'Outfit', sans-serif",
             fontSize: "1.5rem",
             fontWeight: 800,
-            border: "none",
-            cursor: "pointer",
+            textDecoration: "none",
             background: "var(--gradient-accent)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -69,7 +92,7 @@ const Navbar = () => {
           }}
         >
           waanney
-        </button>
+        </Link>
 
         {/* Desktop Nav */}
         <div
@@ -83,7 +106,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <button
               key={item}
-              onClick={() => scrollTo(item)}
+              onClick={() => handleNavClick(item)}
               style={{
                 background: "none",
                 border: "none",
@@ -103,7 +126,7 @@ const Navbar = () => {
                   "var(--text-secondary)")
               }
             >
-              {t(`nav.${item}`)}
+              {t(`nav.${item}` as any)}
             </button>
           ))}
           <div
@@ -154,7 +177,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <button
               key={item}
-              onClick={() => scrollTo(item)}
+              onClick={() => handleNavClick(item)}
               style={{
                 background: "none",
                 border: "none",
@@ -167,7 +190,7 @@ const Navbar = () => {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              {t(`nav.${item}`)}
+              {t(`nav.${item}` as any)}
             </button>
           ))}
           <div style={{ display: "flex", gap: "0.5rem", paddingTop: "0.5rem" }}>

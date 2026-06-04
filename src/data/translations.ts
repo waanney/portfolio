@@ -6,6 +6,7 @@ export const translations = {
       research: "Research",
       projects: "Projects",
       contact: "Contact",
+      blog: "Blog",
     },
     hero: {
       greeting: "Hi there, I'm",
@@ -47,6 +48,7 @@ export const translations = {
       research: "Nghiên cứu",
       projects: "Dự án",
       contact: "Liên hệ",
+      blog: "Blog",
     },
     hero: {
       greeting: "Xin chào, mình là",
