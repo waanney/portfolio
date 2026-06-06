@@ -49,8 +49,6 @@ const posts = ref<any[]>(postsData.filter((p: any) => p.category === "Publicatio
 </template>
 
 <style scoped lang="scss">
-@use "../assets/styles/mixins.scss" as mixins;
-
 .pub-container {
   padding-top: 2rem;
   display: flex;
