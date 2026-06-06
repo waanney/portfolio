@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import postsData from '../data/posts.json';
 
-// For now, this is a placeholder. You can later integrate Vite's glob import to read markdown files.
-const posts = ref([
-  { id: 1, title: 'Welcome to my new Portfolio', date: '2026-06-06', excerpt: 'Hello World! This is my first blog post.' },
-]);
+const posts = ref<any[]>(postsData);
 </script>
 
 <template>
@@ -14,7 +12,6 @@ const posts = ref([
       <article v-for="post in posts" :key="post.id" class="post-card">
         <h2><router-link :to="`/post/${post.id}`">{{ post.title }}</router-link></h2>
         <span class="date">{{ post.date }}</span>
-        <p>{{ post.excerpt }}</p>
       </article>
     </div>
   </div>

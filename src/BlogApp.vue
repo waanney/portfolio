@@ -23,7 +23,7 @@ usePreloader();
 .blog-layout {
   min-height: 100vh;
   background: var(--color-background-300, var(--color-beige-400));
-  color: var(--color-text-cyan-400, #333);
+  color: #1a1a1a;
   font-family: "Urbanist", sans-serif;
   overflow-y: auto;
   padding-bottom: 4rem;

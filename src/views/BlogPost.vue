@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
+import { marked } from 'marked';
+import postsData from '../data/posts.json';
 
 const route = useRoute();
 
-// Mock data, to be replaced with real markdown parser
+const posts = postsData as any[];
+
+const post = computed(() => {
+  return posts.find((p: any) => p.id === route.params.id);
+});
+
 const content = computed(() => {
+  if (!post.value) return '<p>Post not found.</p>';
   return `
-    <h2>Welcome to my new Portfolio</h2>
-    <p>This blog page is built using Vue Router and will support Markdown in the future!</p>
-    <p>Post ID: ${route.params.id}</p>
+    <h2>${post.value.title}</h2>
+    ${marked.parse(post.value.content)}
   `;
 });
 </script>
