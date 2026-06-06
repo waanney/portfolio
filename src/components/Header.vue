@@ -99,16 +99,6 @@ const getInTouchClassNames = computed(() => {
       <Button
         renderAs="a"
         variant="accent"
-        aria-label="Blog"
-        href="/portfolio/blog/"
-        :class="getInTouchClassNames"
-        data-cursor="circle-white"
-        data-hoversound="hover"
-        >Blog & Resume</Button
-      >
-      <Button
-        renderAs="a"
-        variant="accent"
         :aria-label="t('get-in-touch')"
         :href="social.find((item) => item.name === 'mail')?.url ?? ''"
         external

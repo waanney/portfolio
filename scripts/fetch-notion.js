@@ -43,6 +43,7 @@ async function getPosts() {
       return {
         id: page.id,
         title: page.properties.Name.title[0]?.plain_text || "Untitled",
+        category: page.properties.Category?.select?.name || "Blog",
         date: page.properties.Date.date?.start || new Date(page.created_time).toISOString().split('T')[0],
         content: mdString.parent
       };

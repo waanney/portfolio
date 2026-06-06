@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import postsData from '../data/posts.json';
 
-const posts = ref<any[]>(postsData);
+const posts = ref<any[]>(postsData.filter((p: any) => p.category === "Blog"));
 </script>
 
 <template>

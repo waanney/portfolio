@@ -10,6 +10,8 @@ const routes = [
   { path: '/', component: BlogList },
   { path: '/post/:id', component: BlogPost },
   { path: '/resume', component: Resume },
+  { path: '/novels', component: () => import('./views/NovelList.vue') },
+  { path: '/publications', component: () => import('./views/PublicationList.vue') },
 ];
 
 const router = createRouter({

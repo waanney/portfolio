@@ -7,17 +7,28 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useHeaderTheme } from "../composables/useHeaderTheme";
 import { projectId } from "../composables/useRouteObserver";
 
+const routeLinks = ["blog", "novels", "publications", "resume"];
+
 const handleLinkClick = (link: string) => {
+  const sectionName = link.replace("#", "");
+  if (routeLinks.includes(sectionName)) {
+    window.location.href = `/portfolio/blog/#/${sectionName === 'blog' ? '' : sectionName}`;
+    return;
+  }
   if (!lenis.value) return;
   lenis.value.scrollTo(link);
 };
 
-type ActiveLink = "about" | "projects" | "contact";
+type ActiveLink = "about" | "projects" | "blog" | "novels" | "publications" | "resume" | "contact";
 const activeLink = ref<ActiveLink | null>(null);
-const sections: ActiveLink[] = ["about", "projects", "contact"];
+const sections: ActiveLink[] = ["about", "projects", "blog", "novels", "publications", "resume", "contact"];
 const ariaLabels = {
   about: t("about"),
   projects: t("projects"),
+  blog: t("blog"),
+  novels: t("novels"),
+  publications: t("publications"),
+  resume: t("resume"),
   contact: t("contact"),
 };
 
