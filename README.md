@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio (2025)
 
-## Getting Started
+Personal portfolio site: project case studies, lightweight 3D and shader demos, bilingual copy (English and German).
 
-First, run the development server:
+Built with **Vue 3**, **TypeScript**, and **Vite**. Motion via **GSAP** and **Lenis**, 3D via **three.js**, audio via **Howler**. GLSL is compiled through **vite-plugin-glsl**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Scripts
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Command        | Description                          |
+| -------------- | ------------------------------------ |
+| `npm run dev`   | Dev server on port **3000** (`strictPort`) |
+| `npm run build` | `vue-tsc` then production bundle to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run typecheck` | Typecheck only (`vue-tsc -b`) |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Projects**: `src/content/projects/{en,de}/<slug>.ts` — copy, tags, media, links. Slugs must align with `projectIds` in `src/content/projects/index.ts`.
+- **Previews / listing**: `src/content/projects/previews/`.
+- **Tags**: variants and labels live in `src/components/tagVariants.ts` (used by `Tag.vue` and content types).
 
-## Learn More
+## Stack (high level)
 
-To learn more about Next.js, take a look at the following resources:
+- Vue 3 (`<script setup>`), SCSS with shared mixins (`src/assets/styles/`)
+- i18n helpers under `src/i18n/`
+- WebGL / GLSL under `src/three/` where applicable
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Credits & Attribution
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project was created and designed by David Heckhoff.
 
-## Deploy on Vercel
+If you use this project or substantial parts of its source code as a base for your own portfolio or work, attribution must be preserved.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Please keep:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- existing credit comments in the source code
+- this attribution section in the README
+- a visible reference to the original project/repository in derivative works
+
+Original portfolio:
+-> https://david-hckh.com
+
+Commercial reuse or redistribution of substantial portions of this project without permission is prohibited.
