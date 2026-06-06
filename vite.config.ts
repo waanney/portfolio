@@ -34,6 +34,10 @@ export default defineConfig({
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
+      input: {
+        main: "./index.html",
+        blog: "./blog/index.html"
+      },
       output: {
         inlineDynamicImports: false,
         assetFileNames: "assets/[hash].[ext]",
